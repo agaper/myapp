@@ -1,0 +1,125 @@
+@charset "utf-8";
+
+/* 较为通用的组件 */
+
+.pj-btn,
+.pj-sline-t,
+.pj-sline-b,
+.pj-sline-l,
+.pj-sline-r,
+.pj-sline-four,
+.pj-click-hlg,
+.pj-arrow-line,
+.pj-arrow-filled{ position: relative; }
+/* 按钮的样式 根据项目做相应的修改 */
+.pj-btn{ overflow: hidden; border:0 none; text-align: center; border-radius: 6px; -webkit-transition:all 0.2s; transition:all 0.2s; height: 30px; padding: 0 10px; box-sizing: border-box; }
+.pj-btn:after{ content: " "; position: absolute; width: 100%; height: 100%; left: 0; top: 0;  -webkit-transition: all 0.2s; transition: all 0.2s; background-color: rgba(0,0,0,0); }
+.pj-btn:active:after{ background-color: rgba(0,0,0,.1); }
+.pj-btn.has-border{ overflow: visible; }
+.pj-btn.has-border:before{ content:" "; position: absolute; left:0; top:0; width:200%; height:200%;  -webkit-transform:scale(0.5); transform:scale(0.5); -webkit-transform-origin: 0 0; transform-origin: 0 0; border:1px solid rgba(0, 0, 0, .3); border-radius: 10px; }
+.pj-btn.mid{ width:90px; height: 30px; }
+.pj-btn.big{ width:100%; height: 42px; font-size: 16px;}
+.pj-btn.disabled{ color:#999; background-color: #efefef; }
+.pj-btn.theme{ background-color: #FFE443; color:#4E1C17; }
+/* 元素点击带有高亮的样式 */
+.pj-click-hlg:after{ content: " "; position: absolute; width: 100%; height: 100%; left: 0; top: 0;  -webkit-transition: all 0.2s; transition: all 0.2s; background-color: rgba(0,0,0,0); }
+.pj-click-hlg:active:after{ background-color: rgba(0,0,0,.1);}
+/* 半像素细线 */
+.pj-sline-t:before{ content:" "; position: absolute; left:0; top:0; width:100%; height:0;-webkit-transform:scaleY(0.5); transform:scaleY(0.5); border-top:1px solid rgba(0, 0, 0, .3); }
+.pj-sline-b:before{ content:" "; position: absolute; left:0; bottom:0; width:100%; height:0; -webkit-transform:scaleY(0.5); transform:scaleY(0.5);  border-bottom:1px solid rgba(0, 0, 0, .3);}
+.pj-sline-l:before{ content:" "; position: absolute; left:0; top:0; width:0; height:100%; -webkit-transform:scaleX(0.5); transform:scaleX(0.5); border-left:1px solid rgba(0, 0, 0, .3); }
+.pj-sline-r:before{ content:" "; position: absolute; right:0; top:0; width:0; height:100%;  -webkit-transform:scaleX(0.5); transform:scaleX(0.5); border-right:1px solid rgba(0, 0, 0, .3); }
+.pj-sline-four:before{ content:" "; position: absolute; left:0; top:0; width:200%; height:200%;  -webkit-transform:scale(0.5); transform:scale(0.5); -webkit-transform-origin: 0 0; transform-origin: 0 0; border:1px solid rgba(0, 0, 0, .3); }
+/* 边框三角 */
+.pj-arrow-line:before{ content:" "; position: absolute; right: 0; top:50%; width: 6px; height: 6px; border-top:1px solid #aaa; border-right: 1px solid #aaa; -webkit-transform: rotate(45deg) translate(0, -50%); transform: rotate(45deg) translate(0, -50%); }
+/* 边框三角 - 填充 */
+.pj-arrow-filled:before{ content:" "; position: absolute; right: 0; width:0; height: 0; border:5px solid rgba(0, 0, 0, 0); border-top-color: #666; }
+/* 遮罩层 一般控制弹框显示隐藏，遮罩层就嵌套弹框，为父子结构 */
+.pj-overlay{ position:fixed; left:0; top:0; right:0; bottom:0; background-color:rgba(0,0,0,0.7); z-index: 300;}
+/* 弹出框 */
+.pj-dialog{ text-align: center; border-radius: 5px; width: 2.5rem; padding:24px 28px; background-color: #fff; }
+/* 遮罩层过渡效果 使用Vue transition组件, <transition name="pj-overlay-fade">/transition> */
+.pj-overlay-fade-enter-active,
+.pj-overlay-fade-leave-active { -webkit-transition: opacity 0.3s ease; transition: opacity 0.3s ease;}
+.pj-overlay-fade-enter,
+.pj-overlay-fade-leave-active{ opacity: 0; }
+/* 富文本样式 */
+.pj-html-data *{ max-width: 100% !important;  }
+.pj-html-data{ word-wrap: break-word; line-height: 1.6; color: #333; font-size: 14px; text-align: justify; word-break: break-all; overflow: hidden; }
+.pj-html-data img{ margin-bottom:10px; }
+/* 带有滚动条的元素，包括横向、纵向 */
+.pj-horizontal-scrollerbar{ overflow:hidden; overflow-x:scroll; -webkit-overflow-scrolling:touch; }
+.pj-vertical-scrollerbar{ overflow:hidden; overflow-y:scroll; -webkit-overflow-scrolling:touch; }
+.pj-horizontal-scrollerbar::-webkit-scrollbar,
+.pj-horizontal-scrollerbar::-webkit-scrollbar-track-piece,
+.pj-vertical-scrollerbar::-webkit-scrollbar-track-piece,
+.pj-vertical-scrollerbar::-webkit-scrollbar{ background-color:transparent; display: none; opacity: 0; }
+
+.pj-hscroller{ white-space: nowrap; }
+.pj-hscroller .item{ display: inline-block; margin:0 20px; padding: 30px; border:1px solid #ccc; }
+
+/* 图片布局相关 */
+.img-box{ display: block; position: relative; overflow: hidden; }
+.faceimg{ border-radius: 100%; background-color: #F1F1F1; }
+.img-emoj{ width:20px; vertical-align:top; margin:0 1px; }
+.img-spread{ display: block; width: 100%; }
+.pj-img{ background-size: cover; background-position: center; background-color: #EFEFEF; overflow: hidden; position:relative; }
+
+.img-with-text{ position: relative; }
+.img-with-text .pj-img{ float: left; margin-right: 12px; }
+.img-with-text .title{ font-size: 16px; }
+
+/* 列表底部加载状态元素 */
+@-webkit-keyframes loadingRotateAnimation
+{
+   0% { -webkit-transform: rotate(0deg); transform: rotate(0deg); }
+   100% { -webkit-transform: rotate(360deg); transform: rotate(360deg); }
+}
+.loadingRotateAnimation{
+  -webkit-animation: loadingRotateAnimation 1s infinite linear;
+  animation: loadingRotateAnimation 1s infinite linear;
+}
+.list-btm-loadstatus{ color:#aaa; text-align: center; line-height: 16px; margin-top: 20px; }
+.list-btm-loadstatus .icon-load{ display: inline-block; width: 12px; height: 12px; background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAAAXNSR0IArs4c6QAAA0lJREFUSA2tls1LG0EYxnfX1YqCGm+NIPRStR5NycUeItiL4gqif4SnetH/QKgXPflHCIVsjw2YQ0SU6kGhUr8IRpOe/Ch+kGg0/T1bV0yNtTYZePednXnf55lnZnZmTeOJkkgkXl9dXQ3e3Nz0EtpaKBSCmMF7Bp/CYli0r69v629Q5mOdEHQBNoX13AIb8veNvvvv86Zpjvf396+WwnxABJC9sLAwgx8FSP3H1F28e319vVFVVZUREPUgSjuJGaDfwQdoplqYbWho+BCJRPKK80sR0fr6euD09PQTSRESsgRN19XVfQyFQj/9hFI+Fos1ZrPZCXLGyK0lJm7b9hDqjv34OyKC7MXFxS/4CFOQxg92d3ev+IH/4l3XDZEXhawFH29ubn7vK7N8gOXl5RkIIpZlpfHh55IIx3GcFaY2DIkGGjk8PJzx8T1FS0tLXYB/ZSQ5iN6Fw+FnKfHBfC9ll5eXCTBfgPl2ZGRk1VNEwxRBJqOZLpdEZFKGm2bDSIiwDXNtba0tl8t9h+wYe/XUwivpX8rc3FwjapLEaje2Wfl83oHAwNxKkWggTJd2qsta6eMetCDoFZEa9ahkgeQzJPq4em1IWtkABrZRSRJhgf1NisQhoqAaq6urvS9e9UoVBq/zUHBBEVUK9wHO8PCwD17Q9s6IDHZP2YPo8hpe3q7RD22GlIiQ+KY8zJLZnZo6yFIIsWKYiJySoWU0crrrZNdmiFmcsq4UUZzd3d3GMnCLUiEQlq4PLUvUam9v36SiSyvA+TRRFF3Gi64NSAIQCnvLP73HIStgY6gKlYHvpZ6fnwtjDBPmuBo9oo6OjlVYZ3mv5SCM7u/vt6jzf8rFxYVydSfVYrM1NTXFVzsS7e3t7XmssLOzc5BKpZ6tTEq4oQ+wwtnZ2bww/cH6U6edkYd9CB+ns4XDNrG3tzd5dHT05AZRzMnJyaRyUCFF8fr6emHd/Tf4X65PrG1uJ5NJ3bajNJrMsa4PV7sTkA0G4x1VtAWxTmwA06cR0DpT935O8HckAn9ApEYV1HThdGn1kCTF2qae/7Oudy5N73erqampeE0ERnmU6He3YaTT6TaUOJB4P5B4KRFhhrpOlRgqXX6xNv2cUv4XWjLNpKtYSHoAAAAASUVORK5CYII=") no-repeat left top; background-size: 12px 12px; margin-right: 3px; position: relative; top:1px;}
+.list-btm-loadstatus .icon-load.loading{ -webkit-animation: loadingRotateAnimation 1s infinite linear; animation: loadingRotateAnimation 1s infinite linear; }
+.list-btm-loadstatus .icon-load.loaded{ display: none; }
+
+
+/* 上传图片的组件样式 */
+/*
+<form class="post-imgs" enctype="multipart/form-data">
+    <div class="item" v-for="(item, index) in imgs">
+        <div class="pj-img" v-lazy:background-image="item.picurl" @click="showBigImg(item)"></div>
+        <span class="icon-delete" @click.stop="deletePic(index)"></span>
+    </div>
+    <div class="item btn-upload">
+        <input ref="upfile" type="file" name="upfile" class="ipt-file" accept="image/*">
+    </div>
+</form>
+*/
+.post-imgs{ clear: both; overflow: hidden; padding: 12px 0 0 0; position: relative; }
+.post-imgs .item{ width: 0.59rem; height: 0.59rem; float: left; margin: 0 8px 8px 0; background-color: #F2F2F2; position: relative; }
+.post-imgs .item.btn-upload{ background: url("") no-repeat center center; background-size: 16px 16px; }
+.post-imgs .item.btn-upload:after{ content: " "; position: absolute; left: 0; top: 0; width: 200%; height: 200%; transform: scale(0.5); -webkit-transform: scale(0.5); transform-origin: 0 0; -webkit-transform-origin: 0 0; border: 1px solid rgba(0, 0, 0, 0.1); border: 1px dashed #ccc; }
+.post-imgs .icon-delete{ position: absolute; right: -3px; top: -3px; width: 18px; height: 18px; border-radius: 0.9rem; background: rgba(0, 0, 0, 0.7) url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAAAXNSR0IArs4c6QAAALxJREFUKBWNktERgjAQRGMBfFIBvxZhFzZgD/xSiLXQhA492INjfJtxUWNOvZnlCLePO0JSznlACxrTj8DToxkdE5ctuiLFFLHUBJ1kIubi42aPQpjaKyS4XxtE8FfIdA3/BQXwBVjxPp7NdcZ4QDcRhODnN9Vmr2VC3j3Dk+vN/IDOZIVgdQ53u7wEgzoZUi7jkeNfFUEeqwnzsEMfnQw5V/CoI7dDinU8m+uMx2MvAjdIcFcbW2t8OtvDHQhefiVPNd51AAAAAElFTkSuQmCC") no-repeat center center; background-size: 7px 7px; }
+.post-imgs .pj-img{ width: 0.59rem; height: 0.59rem; }
+.post-imgs .ipt-file{ position: absolute; left: 0; top: 0; width: 100%; height: 100%; opacity: 0; z-index: 1; }
+
+/* 倒计时格式-时分秒 */
+.countdown{ font-size: 0; }
+.countdown .label,
+.countdown .num,
+.countdown .divider{ font-size: 12px; }
+.countdown .num{ display: inline-block; width: 18px; line-height: 18px; color:#fff; background-color: #333; text-align: center; }
+.countdown .divider{ margin:0 4px; }
+
+/* 带有箭头的步骤条 */
+.verify-step{ margin-top: 18px; }
+.verify-step .item{ display: flex; justify-content: center; align-items: center; line-height: 60px; background-color: #fff; font-size: 14px; color:#9298AF; position: relative;}
+.verify-step .item.active{ background-color: #717DA9; color:#fff; font-weight: 800;}
+.verify-step .item.active .item-arr{ border-left-color: #717DA9; }
+.verify-step .item.active .item-num{ border-color:#fff; }
+.verify-step .item-arr-bg{ width: 10px; height: 100%; background-color: #F8F8F8; position: absolute; right:0; top:0;}
+.verify-step .item-arr-bg:after{ content: ' '; width:0; height: 0; border-width: 30px 20px; border-color: rgba(0,0,0,0); border-left-color:#F8F8F8; position: absolute; top:0; right:-40px; border-style: solid; z-index: 1; }
+.verify-step .item-arr{  width:0; height: 0; border-width: 30px 20px; border-color: rgba(0,0,0,0); border-left-color:#FFF; position: absolute; top:0; right: -30px; border-style: solid; z-index: 1; }
+.verify-step .item-num{ font-weight: bold; display: inline-block; width: 32px; line-height: 32px; height: 32px; border-radius: 32px; border: 1px solid #E6E8F1; font-size: 24px; margin-right: 20px; text-align: center; }    

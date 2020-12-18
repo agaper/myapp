@@ -80,7 +80,7 @@ export default {
    */
   isValidPhone(val){
     if (!val) return false;
-    var testReg = /^1[23456789]\d{9}$/;
+    let testReg = /^1[23456789]\d{9}$/;
     return testReg.test(val);
   },
 
@@ -110,7 +110,7 @@ export default {
   isValidIpAndPort(val){
     if( '' == val ) return;
     let res = true;
-    var reg = /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\:([0-9]|[1-9]\d{1,3}|[1-5]\d{4}|6[0-5]{2}[0-3][0-5])$/;
+    let reg = /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\:([0-9]|[1-9]\d{1,3}|[1-5]\d{4}|6[0-5]{2}[0-3][0-5])$/;
     res = reg.test(val);
     return res;
   },
@@ -123,7 +123,7 @@ export default {
   isValidIp(val){
     if( '' == val ) return;
     let res = true;
-    var reg = /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])((\/)([0-9]|[1-9]\d{1,3}|[1-5]\d{4}|6[0-5]{2}[0-3][0-5]))*$/;
+    let reg = /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])((\/)([0-9]|[1-9]\d{1,3}|[1-5]\d{4}|6[0-5]{2}[0-3][0-5]))*$/;
     res = reg.test(val);
     return res;
   },
@@ -135,7 +135,7 @@ export default {
    */
   handleRichText(content){
     if(!content) return;
-    var content = content.replace(/<img/g, '<img style="max-width:100% !important;" ');
+    content = content.replace(/<img/g, '<img style="max-width:100% !important;" ');
     if (content.indexOf('data-original=') !== -1) {
       content = content.replace(/data-original/g, 'src');
     }
@@ -188,7 +188,7 @@ export default {
           if (this.params.page == 1 && this.firstPageLoaded instanceof Function) {
             this.firstPageLoaded(result)
           }
-          var data = result;
+          let data = result;
           if (!(result instanceof Array)) {
             data = result.data
             this.total = result.total
@@ -201,7 +201,7 @@ export default {
             return
           }
           //this.finish = data.length < this.params.step ? true : false
-          for (var i = 0; i < data.length; i++) {
+          for (let i = 0; i < data.length; i++) {
             this.data.push(data[i]);
           }
           if (this.loadedCallback instanceof Function) {
@@ -217,7 +217,7 @@ export default {
           step: this.params.step,
           page: 0
         };
-        for (var key in params) {
+        for (let key in params) {
           this.params[key] = params[key];
           Vue.set(this.params, key, params[key]);
         }
@@ -234,15 +234,15 @@ export default {
   linkParamsParser(link){
     if ('' == link) return {};
     link = link || window.location.search;
-    var searchString = link,
-      searchString = searchString.substr(searchString.indexOf('?')),
-      searchString = searchString.replace(/\?/g, ''),
-      dict = {};
+    let searchString = link;
+    searchString = searchString.substr(searchString.indexOf('?'));
+    searchString = searchString.replace(/\?/g, '');
+    let dict = {};
     if (searchString) {
-      var paramArr = searchString.split('&');
-      for (var item in paramArr) {
-        var itemStr = paramArr[item];
-        var pairArr = itemStr.split('=');
+      let paramArr = searchString.split('&');
+      for (let item in paramArr) {
+        let itemStr = paramArr[item];
+        let pairArr = itemStr.split('=');
         dict[pairArr[0]] = pairArr[1];
       }
     }
@@ -250,8 +250,22 @@ export default {
   },
 
   
-
-
+  /**
+   * @description 将对象转化为链接后面的参数
+   * @param {object} params
+   * @param {string} escapedKey
+   * @return {string}
+   */
+  dictToUrlString(params, escapedKey){
+    let paramsString = '?';
+    for(let item in params){
+        if(escapedKey !== item){
+            paramsString += item+'='+params[item]+'&';
+        }
+    }
+    return paramsString;
+  },
+  
   // H5一些相关的
   h5Helper: {
     isAndroid(){
@@ -261,7 +275,7 @@ export default {
       return window.navigator.appVersion.toLowerCase().indexOf('iphone') != -1;
     },
     isWeiXinWeb: function () {
-      var ua = window.navigator.userAgent.toLowerCase();
+      let ua = window.navigator.userAgent.toLowerCase();
       return ua.match(/MicroMessenger/i) == 'micromessenger';
     },
   }

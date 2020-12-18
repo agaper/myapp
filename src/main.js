@@ -1,27 +1,20 @@
 import Vue from 'vue';
 import App from './App.vue';
-
+import router from './router.js'
 import VueCookies from 'vue-cookies';
+import http from './core/request/http.js';
+import util from './assets/js/util.js';
+import './assets/style/main.scss'
+
 Vue.use(VueCookies);
 Vue.$cookies.config('7d');
 
-
-import router from './router.js'
-
 // 全局通用性常量集合
 Vue.prototype.$GlobalConstants = {
-  loginCookieField: 'gfsessionid',
-  loginUsername: 'username',
-  
   curdActionAdd: 'add',
   curdActionEdit: 'edit',
-
 };
-
-import http from './core/request/http.js';
 Vue.prototype.$http = http;
-
-import util from './assets/js/util.js';
 Vue.prototype.$util = util;
 
 Vue.config.productionTip = false;
