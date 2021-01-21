@@ -6,3 +6,8 @@
 @import './lib/layout.scss';
 @import './lib/util.scss';
 
+/*
+类似 big、small, is-xxxx, disabled 等修饰性的单词，不能单独定义样式，必须属于某个元素
+*/
+
+.tpage{ padding: 20px; max-width: 640px; margin: 0 auto; }

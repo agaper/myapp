@@ -1,6 +1,7 @@
 import moment from 'moment';
 import Vue from 'vue';
 
+
 const startDateByYear = moment().year(moment().year()).startOf('year').format('YYYY-MM-DD');
 const endDateByYear = moment().year(moment().year()).endOf('year').format('YYYY-MM-DD');
 
@@ -26,7 +27,6 @@ export default {
     
     todayDate,
   },
-  
   /**
    * @description 返回一定时间段内的天、小时、分钟、秒
    * @method
@@ -59,7 +59,6 @@ export default {
     }
     return res;
   },
-
   /**
    * @description 格式是否符合邮箱
    * @param {string} val
@@ -72,7 +71,6 @@ export default {
     res = reg.test(val);
     return res;
   },
-
   /**
    * @description 格式是否符合手机号
    * @param {string} val
@@ -83,7 +81,6 @@ export default {
     let testReg = /^1[23456789]\d{9}$/;
     return testReg.test(val);
   },
-
   /**
    * @description 格式是否符合域名，不对IP做判断
    * @param {string} val
@@ -101,7 +98,6 @@ export default {
     }
     return res && !valIsMadeByNum;
   },
-
   /**
    * @description 格式是否符合IP+端口
    * @param {string} val
@@ -114,7 +110,6 @@ export default {
     res = reg.test(val);
     return res;
   },
-
   /**
    * @description 格式是否符合IP
    * @param {string} val
@@ -127,7 +122,6 @@ export default {
     res = reg.test(val);
     return res;
   },
-
   /**
    * @description 对富文本中的字符串进行处理
    * @param {string} content
@@ -143,7 +137,6 @@ export default {
     content = content.replace(/(section|article|aside|bdi|figure|figcaption|header|footer|mark|summary|time)/g, 'div');
     return content;
   },
-
   /**
    * @description 分页处理器
    * @param {object} config
@@ -178,8 +171,8 @@ export default {
         }
         this.loading = true;
         this.params.page += 1;
-        // 请求方法注意要从项目当中引入，
-        request(config.url, this.params, (result) => {
+        // 请求方法注意要从项目当中引入
+        XXX_Request(config.url, this.params, (result) => {
           this.loading = false;
           // 返回原始数据
           if (config.getRawData instanceof Function) {
@@ -225,7 +218,6 @@ export default {
       }
     };
   },
-
   /**
    * @description 获取链接?后的参数
    * @param {string} link
@@ -248,7 +240,6 @@ export default {
     }
     return dict;
   },
-
   
   /**
    * @description 将对象转化为链接后面的参数
@@ -265,6 +256,147 @@ export default {
     }
     return paramsString;
   },
+
+  /**
+   * @description 获取页面内容滚出可视区域的高度
+   * @return 高度值
+   */
+  getPageScrollTop() {
+    var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    return scrollTop;
+  },
+  
+  /**
+   * @description 设置页面内容滚出可视区域的高度
+   * @param scroll_top 值 
+   */
+  setPageScrollTop(scroll_top=0) {
+    document.documentElement.scrollTop = scroll_top;
+    document.body.scrollTop = scroll_top;
+  },
+  /**
+   * @description 验证手机号
+   * @param phone 手机号
+   */
+  validatePhoneNumber(phone){
+    if('' == phone) return;
+    var testReg = /^1[34578]\d{9}$/;
+    return testReg.test(phone);
+  },
+  
+  /**
+   * @description 无限滚动效果
+   * @param options Object
+   * @param options.isVertical  Boolean 是否是竖直方向的滚动
+   * @param options.listContainer  DOM Node 滚动列表容器
+   * @param options.listCopyed  DOM Node 拷贝的滚动列表包裹元素
+   * @param options.listOri  DOM Node 原始的滚动列表包裹元素
+   * @desc options.distance > 1就代表按组滚动 具体每组的数量按设计图来
+   */
+  setupScroller(options){
+    var timer = null,
+      animationFrameKey = null,
+      isVertical = typeof options.isVertical !== 'undefined' && options.isVertical,
+      top = 0;
+    options.listCopyed.innerHTML = options.listOri.innerHTML;
+    if (!isVertical) {
+      options.listContainer.parentElement.className += ' scroll-x';
+      var listUnitWidth = 0;
+      var listItems = options.listOri.childNodes;
+      listItems.forEach(function (item) {
+        var space = document.defaultView.getComputedStyle(item, null)['marginRight'];
+        space = parseInt(space);
+        listUnitWidth += (item.offsetWidth + space);
+      });
+      options.listOri.style.width += listUnitWidth + 'px';
+      options.listCopyed.style.width += listUnitWidth + 'px';
+      options.listOri.className += ' horizontal';
+      options.listCopyed.className += ' horizontal';
+      options.listContainer.style.width += 2 * listUnitWidth + 'px';
+    }
+    if (typeof options.distance !== 'undefined' && options.distance > 1) {
+      // 按每组几个一起滚动 水平方向的情况可能不太常见
+      timer = setInterval(function () {
+        if (isVertical) {
+          if (options.listContainer.style.top) {
+            top = parseInt(options.listContainer.style.top);
+            if (top <= 0) {
+              if (Math.abs(top) >= options.listOri.offsetHeight) {
+                top = 0;
+              } else {
+                top += -options.distance;
+              }
+              options.listContainer.style.top = top + 'px';
+            }
+          } else {
+            top = 0;
+            options.listContainer.style.top = top + 'px';
+          }
+        }
+      }, 2000);
+    } else {
+      if (isVertical) {
+        options.listContainer.parentElement.className += ' scroll-y';
+      }
+
+      function animateAction() {
+        if (isVertical) {
+          if (options.listContainer.parentElement.scrollTop == options.listOri.offsetHeight) {
+            options.listContainer.parentElement.scrollTop = 0;
+          } else {
+            options.listContainer.parentElement.scrollTop++;
+          }
+        } else {
+          if (options.listContainer.parentElement.scrollLeft == options.listOri.offsetWidth) {
+            options.listContainer.parentElement.scrollLeft = 0;
+          } else {
+            options.listContainer.parentElement.scrollLeft++;
+          }
+        }
+      }
+
+      var lastTime = Date.now(),
+          diffTime = options.diff || 20;
+      window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+     
+      if (window.requestAnimationFrame) {
+        let animloopRef = null;
+        (function animloop() {
+          if (Date.now() - lastTime > diffTime) {
+            lastTime = Date.now();
+            animateAction();
+          }
+          animationFrameKey = window.requestAnimationFrame(animloop);
+          if( !animloopRef ){
+            animloopRef = animloop;
+          }
+        })();
+        
+        options.listContainer.onmouseover = function(){
+          window.cancelAnimationFrame(animationFrameKey);
+        };
+        options.listContainer.onmouseout = function(){
+          if( animloopRef ){
+            window.requestAnimationFrame(animloopRef);
+          }
+        };
+      } else {
+        timer = setInterval(function(){
+          animateAction();
+        }, 40);
+        options.listContainer.onmouseover = function(){
+          clearInterval(timer);
+        };
+        options.listContainer.onmouseout = function(){
+          timer = setInterval(function(){
+            animateAction();
+          }, 40);
+        };
+      }
+        
+    }
+    return timer;
+  },
   
   // H5一些相关的
   h5Helper: {
@@ -274,11 +406,40 @@ export default {
     isIOS(){
       return window.navigator.appVersion.toLowerCase().indexOf('iphone') != -1;
     },
-    isWeiXinWeb: function () {
+    isWeiXinWeb () {
       let ua = window.navigator.userAgent.toLowerCase();
       return ua.match(/MicroMessenger/i) == 'micromessenger';
     },
-  }
+    /**
+     * @description 调用查看大图组件
+     * @param nodeId 图片直接父节点的id 
+     */
+    showImagePreview(nodeId){
+      if(!nodeId) return;
+      var node = document.getElementById(nodeId);
+      var imgUrls = [];
+      var imgs = node.getElementsByTagName('img');
+      for (var i = 0; i < imgs.length; i++) {
+        // 表情图标就不必点击查看大图了
+        if (imgs[i].className.indexOf('img-emoj') > -1) continue;
+        imgUrls.push(imgs[i].src);
+      }
+      node.onclick = function (evt) {
+        evt.stopPropagation();
+        if (evt.target.nodeName === 'IMG') {
+          if (evt.target.className.indexOf('img-emoj') > -1) return;
+          if (wx) {
+            wx.previewImage({
+              current: evt.target.src,
+              urls: imgUrls
+            });
+          }
+        }
+      }
+    }
+  },
+  
 
+  
 
 };

@@ -11,42 +11,47 @@
 .pj-click-hlg,
 .pj-arrow-line,
 .pj-arrow-filled{ position: relative; }
+
 /* 按钮的样式 根据项目做相应的修改 */
-.pj-btn{ overflow: hidden; border:0 none; text-align: center; border-radius: 6px; -webkit-transition:all 0.2s; transition:all 0.2s; height: 30px; padding: 0 10px; box-sizing: border-box; }
+.pj-btn{ overflow: hidden; border:0 none; text-align: center; border-radius: 6px; -webkit-transition:all 0.2s; transition:all 0.2s; height: 30px; padding: 0 10px; box-sizing: border-box; cursor: pointer; }
 .pj-btn:after{ content: " "; position: absolute; width: 100%; height: 100%; left: 0; top: 0;  -webkit-transition: all 0.2s; transition: all 0.2s; background-color: rgba(0,0,0,0); }
 .pj-btn:active:after{ background-color: rgba(0,0,0,.1); }
 .pj-btn.has-border{ overflow: visible; }
 .pj-btn.has-border:before{ content:" "; position: absolute; left:0; top:0; width:200%; height:200%;  -webkit-transform:scale(0.5); transform:scale(0.5); -webkit-transform-origin: 0 0; transform-origin: 0 0; border:1px solid rgba(0, 0, 0, .3); border-radius: 10px; }
 .pj-btn.mid{ width:90px; height: 30px; }
-.pj-btn.big{ width:100%; height: 42px; font-size: 16px;}
-.pj-btn.disabled{ color:#999; background-color: #efefef; }
+.pj-btn.big{ display: block; width:100%; height: 42px; line-height: 42px; font-size: 16px;}
+.pj-btn.disabled{ color:#999; background-color: #efefef; cursor: not-allowed; }
 .pj-btn.theme{ background-color: #FFE443; color:#4E1C17; }
+
 /* 元素点击带有高亮的样式 */
 .pj-click-hlg:after{ content: " "; position: absolute; width: 100%; height: 100%; left: 0; top: 0;  -webkit-transition: all 0.2s; transition: all 0.2s; background-color: rgba(0,0,0,0); }
 .pj-click-hlg:active:after{ background-color: rgba(0,0,0,.1);}
+
 /* 半像素细线 */
 .pj-sline-t:before{ content:" "; position: absolute; left:0; top:0; width:100%; height:0;-webkit-transform:scaleY(0.5); transform:scaleY(0.5); border-top:1px solid rgba(0, 0, 0, .3); }
 .pj-sline-b:before{ content:" "; position: absolute; left:0; bottom:0; width:100%; height:0; -webkit-transform:scaleY(0.5); transform:scaleY(0.5);  border-bottom:1px solid rgba(0, 0, 0, .3);}
 .pj-sline-l:before{ content:" "; position: absolute; left:0; top:0; width:0; height:100%; -webkit-transform:scaleX(0.5); transform:scaleX(0.5); border-left:1px solid rgba(0, 0, 0, .3); }
 .pj-sline-r:before{ content:" "; position: absolute; right:0; top:0; width:0; height:100%;  -webkit-transform:scaleX(0.5); transform:scaleX(0.5); border-right:1px solid rgba(0, 0, 0, .3); }
 .pj-sline-four:before{ content:" "; position: absolute; left:0; top:0; width:200%; height:200%;  -webkit-transform:scale(0.5); transform:scale(0.5); -webkit-transform-origin: 0 0; transform-origin: 0 0; border:1px solid rgba(0, 0, 0, .3); }
+
 /* 边框三角 */
 .pj-arrow-line:before{ content:" "; position: absolute; right: 0; top:50%; width: 6px; height: 6px; border-top:1px solid #aaa; border-right: 1px solid #aaa; -webkit-transform: rotate(45deg) translate(0, -50%); transform: rotate(45deg) translate(0, -50%); }
+
 /* 边框三角 - 填充 */
 .pj-arrow-filled:before{ content:" "; position: absolute; right: 0; width:0; height: 0; border:5px solid rgba(0, 0, 0, 0); border-top-color: #666; }
+
 /* 遮罩层 一般控制弹框显示隐藏，遮罩层就嵌套弹框，为父子结构 */
 .pj-overlay{ position:fixed; left:0; top:0; right:0; bottom:0; background-color:rgba(0,0,0,0.7); z-index: 300;}
 /* 弹出框 */
 .pj-dialog{ text-align: center; border-radius: 5px; width: 2.5rem; padding:24px 28px; background-color: #fff; }
+
 /* 遮罩层过渡效果 使用Vue transition组件, <transition name="pj-overlay-fade">/transition> */
 .pj-overlay-fade-enter-active,
 .pj-overlay-fade-leave-active { -webkit-transition: opacity 0.3s ease; transition: opacity 0.3s ease;}
 .pj-overlay-fade-enter,
 .pj-overlay-fade-leave-active{ opacity: 0; }
-/* 富文本样式 */
-.pj-html-data *{ max-width: 100% !important;  }
-.pj-html-data{ word-wrap: break-word; line-height: 1.6; color: #333; font-size: 14px; text-align: justify; word-break: break-all; overflow: hidden; }
-.pj-html-data img{ margin-bottom:10px; }
+
+
 /* 带有滚动条的元素，包括横向、纵向 */
 .pj-horizontal-scrollerbar{ overflow:hidden; overflow-x:scroll; -webkit-overflow-scrolling:touch; }
 .pj-vertical-scrollerbar{ overflow:hidden; overflow-y:scroll; -webkit-overflow-scrolling:touch; }
@@ -114,7 +119,6 @@
 .countdown .divider{ margin:0 4px; }
 
 /* 带有箭头的步骤条 */
-.verify-step{ margin-top: 18px; }
 .verify-step .item{ display: flex; justify-content: center; align-items: center; line-height: 60px; background-color: #fff; font-size: 14px; color:#9298AF; position: relative;}
 .verify-step .item.active{ background-color: #717DA9; color:#fff; font-weight: 800;}
 .verify-step .item.active .item-arr{ border-left-color: #717DA9; }

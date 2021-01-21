@@ -2,9 +2,9 @@ import Vue from 'vue';
 import App from './App.vue';
 import router from './router.js'
 import VueCookies from 'vue-cookies';
-import http from './core/request/http.js';
-import util from './assets/js/util.js';
-import './assets/style/main.scss'
+import http from '@/core/request/http.js';
+import util from '@/assets/js/util.js';
+import '@/assets/style/main.scss'
 
 Vue.use(VueCookies);
 Vue.$cookies.config('7d');

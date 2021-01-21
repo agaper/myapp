@@ -1,7 +1,7 @@
 import defaultLayout from '@/layouts/eleLayout'
 
 export default {
-  path: '/test',
+  path: '/',
   component: defaultLayout,
   children: [
     {
