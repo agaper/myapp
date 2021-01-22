@@ -6,7 +6,7 @@ import http from '@/core/request/http.js';
 import util from '@/assets/js/util.js';
 import '@/assets/style/main.scss'
 
-Vue.use(VueCookies);
+Vue.use(VueCookies); 
 Vue.$cookies.config('7d');
 
 // 全局通用性常量集合

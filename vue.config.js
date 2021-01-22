@@ -1,3 +1,4 @@
+
 module.exports = {
   lintOnSave: false,
 
@@ -20,8 +21,16 @@ module.exports = {
     externals: {
       vue: "Vue",
       'vue-router': 'VueRouter'
+    },
+  },
+  chainWebpack: config => {
+    if (process.env.use_analyzer) {
+      config
+         .plugin('webpack-bundle-analyzer')
+         .use(require('webpack-bundle-analyzer').BundleAnalyzerPlugin);
     }
   },
+
 
   transpileDependencies: [
     'vue-echarts',
