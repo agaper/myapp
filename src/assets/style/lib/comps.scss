@@ -104,7 +104,7 @@
 */
 .post-imgs{ clear: both; overflow: hidden; padding: 12px 0 0 0; position: relative; }
 .post-imgs .item{ width: 0.59rem; height: 0.59rem; float: left; margin: 0 8px 8px 0; background-color: #F2F2F2; position: relative; }
-.post-imgs .item.btn-upload{ background: url("") no-repeat center center; background-size: 16px 16px; }
+.post-imgs .item.btn-upload{  background-size: 16px 16px; }
 .post-imgs .item.btn-upload:after{ content: " "; position: absolute; left: 0; top: 0; width: 200%; height: 200%; transform: scale(0.5); -webkit-transform: scale(0.5); transform-origin: 0 0; -webkit-transform-origin: 0 0; border: 1px solid rgba(0, 0, 0, 0.1); border: 1px dashed #ccc; }
 .post-imgs .icon-delete{ position: absolute; right: -3px; top: -3px; width: 18px; height: 18px; border-radius: 0.9rem; background: rgba(0, 0, 0, 0.7) url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAAAXNSR0IArs4c6QAAALxJREFUKBWNktERgjAQRGMBfFIBvxZhFzZgD/xSiLXQhA492INjfJtxUWNOvZnlCLePO0JSznlACxrTj8DToxkdE5ctuiLFFLHUBJ1kIubi42aPQpjaKyS4XxtE8FfIdA3/BQXwBVjxPp7NdcZ4QDcRhODnN9Vmr2VC3j3Dk+vN/IDOZIVgdQ53u7wEgzoZUi7jkeNfFUEeqwnzsEMfnQw5V/CoI7dDinU8m+uMx2MvAjdIcFcbW2t8OtvDHQhefiVPNd51AAAAAElFTkSuQmCC") no-repeat center center; background-size: 7px 7px; }
 .post-imgs .pj-img{ width: 0.59rem; height: 0.59rem; }
