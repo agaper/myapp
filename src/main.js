@@ -16,6 +16,7 @@ Vue.prototype.$GlobalConstants = {
 };
 Vue.prototype.$http = http;
 Vue.prototype.$util = util;
+console.log( util.dateDict );
 
 Vue.config.productionTip = false;
 

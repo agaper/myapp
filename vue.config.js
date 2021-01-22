@@ -1,3 +1,4 @@
+const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
 
 module.exports = {
   lintOnSave: false,
@@ -12,7 +13,7 @@ module.exports = {
       filename: 'index.html',
       // when using title option,
       // template title tag needs to be <title><%= htmlWebpackPlugin.options.title %></title>
-      title: 'Demos'
+      title: process.env.NODE_ENV + 'Demos'
     }
   },
 
@@ -20,8 +21,13 @@ module.exports = {
     // 常用的框架库不打包到最终文件，引用CDN，降低包体积
     externals: {
       vue: "Vue",
-      'vue-router': 'VueRouter'
+      'vue-router': 'VueRouter',
+      // moment: 'moment'
     },
+    plugins: [
+      // 剥离除 “en” 以外的所有语言环境。
+      new MomentLocalesPlugin()
+    ]
   },
   chainWebpack: config => {
     if (process.env.use_analyzer) {
