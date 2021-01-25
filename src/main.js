@@ -3,7 +3,7 @@ import App from './App.vue';
 import router from './router.js'
 import VueCookies from 'vue-cookies';
 import http from '@/core/request/http.js';
-import util from '@/assets/js/util.js';
+// import 'zy-pj-assets/static/scss/main.scss';
 import '@/assets/style/main.scss'
 
 Vue.use(VueCookies); 
@@ -15,10 +15,12 @@ Vue.prototype.$GlobalConstants = {
   curdActionEdit: 'edit',
 };
 Vue.prototype.$http = http;
-Vue.prototype.$util = util;
-console.log( util.dateDict );
 
 Vue.config.productionTip = false;
+
+import ZYPJ from 'zy-pj-assets';
+Vue.prototype.$util = ZYPJ;
+
 
 
 new Vue({

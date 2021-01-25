@@ -16,6 +16,33 @@
         }else{
             docEl.style.fontSize = 100 * (clientWidth / 375) + 'px';
         }
+        
+        /**
+         * @param {String}  msg    错误信息
+         * @param {String}  url    出错文件
+         * @param {Number}  row    行号
+         * @param {Number}  col    列号
+         * @param {Object}  error  错误详细信息
+         * @desc window.onerror 函数只有在返回 true 的时候，异常才不会向上抛出，否则即使是知道异常的发生控制台还是会显示 Uncaught Error: xxxxx； Promise实例抛出的异常捕获不到，try-catch也不行
+         */
+        window.onerror = function(msg, url, row, col, error){
+          console.warn('in public/index.html show window.onerror error: ');
+          if( url.indexOf('?!.') != -1 ){
+            url = url.split('?!.');
+          }
+          console.log({
+            msg,  url,  row, col, error
+          })
+          return true;
+        }
+        
+        window.addEventListener('unhandledrejection', function(e){
+          e.preventDefault();
+          console.warn('in public/index.html show unhandledrejection error: ');
+          console.log(e);
+          return true;
+        });
+
       })();
     </script>
   </head>

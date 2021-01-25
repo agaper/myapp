@@ -7,10 +7,7 @@
 <script>
 
 export default {
-  name: 'AppRoot',
-  created(){
-    
-  }
+  name: 'AppRoot'
 }
 </script>
 

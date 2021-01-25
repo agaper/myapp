@@ -13,16 +13,17 @@ module.exports = {
       filename: 'index.html',
       // when using title option,
       // template title tag needs to be <title><%= htmlWebpackPlugin.options.title %></title>
-      title: process.env.NODE_ENV + 'Demos'
+      title: process.env.NODE_ENV + ' Demos'
     }
   },
 
+  productionSourceMap: true,
   configureWebpack: {
+    devtool: 'source-map',
     // 常用的框架库不打包到最终文件，引用CDN，降低包体积
     externals: {
       vue: "Vue",
       'vue-router': 'VueRouter',
-      // moment: 'moment'
     },
     plugins: [
       // 剥离除 “en” 以外的所有语言环境。

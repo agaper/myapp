@@ -223,6 +223,14 @@
 </template>
 
 <script>
+import testError from '@/assets/js/test_error';
+
+testError.testFn();
+
+setTimeout(() => {
+  1 / 0;
+}, 100);
+
 let scrollTimer1 = null;
 let scrollTimer2 = null;
 export default {
@@ -235,6 +243,10 @@ export default {
   mounted() {
     this.$nextTick(() => {
       this.initVScroller();
+      Promise.resolve().then(() => {
+        console.log( this.$util.getPageScrollTop() );  
+      });
+      
     });
   },
   methods: {
@@ -275,7 +287,11 @@ export default {
 .scroller-items.horizontal{ float:left; }
 .demo-scroller.scroll-x .scroller-item{ float: left; width: 220px; padding:20px; border:1px solid #ccc; margin-right: 20px; }
 
-.verify-step-wrap{ padding: 30px 0; background-color: #F8F8F8; }
+.verify-step-wrap{ padding: 30px 0; background-color: #eee; 
+  .item-arr-bg{ background-color: #eee;  }
+  .item-arr-bg:after{ border-left-color:#eee; }
+}
+
 .img-with-text {
   padding: 0 90px 0 0;
 }
