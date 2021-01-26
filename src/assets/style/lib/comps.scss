@@ -21,6 +21,7 @@
 .pj-btn.mid{ width:90px; height: 30px; }
 .pj-btn.big{ display: block; width:100%; height: 42px; line-height: 42px; font-size: 16px;}
 .pj-btn.disabled{ color:#999; background-color: #efefef; cursor: not-allowed; }
+.pj-btn.disabled:active:after{ background-color: transparent; }
 .pj-btn.theme{ background-color: #FFE443; color:#4E1C17; }
 
 /* 元素点击带有高亮的样式 */

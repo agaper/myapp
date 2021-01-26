@@ -1,4 +1,7 @@
 const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
+const SkeletonWebpackPlugin = require('vue-skeleton-webpack-plugin');
+
+console.log( process.env );
 
 module.exports = {
   lintOnSave: false,
@@ -27,7 +30,14 @@ module.exports = {
     },
     plugins: [
       // 剥离除 “en” 以外的所有语言环境。
-      new MomentLocalesPlugin()
+      new MomentLocalesPlugin(),
+      // new SkeletonWebpackPlugin({
+      //   webpackConfig: {
+      //     entry: {
+      //       app: resolve('./src/entry-skeleton.js')
+      //     }
+      //   }
+      // })
     ]
   },
   chainWebpack: config => {

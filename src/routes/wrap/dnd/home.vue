@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="tpage">
+    <h1 class="page-title">{{$route.meta.pageTitle}}</h1>
     <div class="box">
       <span class="target target-headimg"></span>
       <span class="target target-qrcode"></span>    

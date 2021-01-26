@@ -64,5 +64,15 @@ export default {
 
 .width-full{ width:100%; }
 
+.page-title{ font-size: 28px; margin-bottom: 30px; }
+.demo-box {
+  margin-bottom: 30px;
+}
+.demo-title {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.pj-cursor-pointer{ cursor: pointer; }
 </style>
 

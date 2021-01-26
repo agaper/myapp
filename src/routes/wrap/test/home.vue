@@ -1,5 +1,7 @@
 <template>
   <div class="tpage">
+    <h1 class="page-title">{{$route.meta.pageTitle}}</h1>
+
     <div class="demo-box">
       <h2 class="demo-title">标题</h2>
       <div>
@@ -47,6 +49,7 @@
         <button class="pj-btn has-border">带边框按钮</button>
         <button class="pj-btn mid theme">按钮-mid</button>
         <router-link to="/dnd" class="pj-btn big theme">按钮-big, 前往拖拽页面</router-link>
+        <router-link to="/byte" class="pj-btn big theme">按钮-big, 前往二进制家族页面</router-link>
         <button class="pj-btn big has-border">按钮-big</button>
         <button class="pj-btn big disabled">按钮-disabled</button>
       </div>
@@ -228,7 +231,7 @@ import testError from '@/assets/js/test_error';
 testError.testFn();
 
 setTimeout(() => {
-  1 / 0;
+  aa+bb;
 }, 100);
 
 let scrollTimer1 = null;
@@ -288,6 +291,7 @@ export default {
 .demo-scroller.scroll-x .scroller-item{ float: left; width: 220px; padding:20px; border:1px solid #ccc; margin-right: 20px; }
 
 .verify-step-wrap{ padding: 30px 0; background-color: #eee; 
+  .item{ white-space: nowrap; }
   .item-arr-bg{ background-color: #eee;  }
   .item-arr-bg:after{ border-left-color:#eee; }
 }
@@ -306,13 +310,7 @@ export default {
 .hide {
   display: none;
 }
-.demo-box {
-  margin-bottom: 30px;
-}
-.demo-title {
-  font-size: 18px;
-  margin-bottom: 10px;
-}
+
 .center-box {
   position: relative;
   height: 100px;

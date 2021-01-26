@@ -9,7 +9,6 @@ export default {
       component: () => import(/* webpackChunkName: "pages" */ './home.vue'),
       meta: { 
         pageTitle: '拖拽',
-        icon: 'pie-chart'
       }
     }
   ]

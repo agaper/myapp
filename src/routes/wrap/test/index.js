@@ -8,8 +8,14 @@ export default {
       path: '',
       component: () => import(/* webpackChunkName: "pages" */ './home.vue'),
       meta: { 
-        pageTitle: '测试',
-        icon: 'pie-chart'
+        pageTitle: '常见页面元素的例子',
+      }
+    },
+    {
+      path: 'byte',
+      component: () => import(/* webpackChunkName: "pages" */ './byte_stream.vue'),
+      meta: { 
+        pageTitle: 'JS中的二进制家族',
       }
     }
   ]
