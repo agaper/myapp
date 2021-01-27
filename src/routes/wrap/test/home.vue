@@ -43,7 +43,7 @@
     </div>
 
     <div class="demo-box">
-      <h2 class="demo-title">按钮</h2>
+      <h2 class="demo-title">按钮，根据项目可自定义各个尺寸</h2>
       <div class="btns">
         <button class="pj-btn">文字按钮</button>
         <button class="pj-btn has-border">带边框按钮</button>
@@ -231,7 +231,7 @@ import testError from '@/assets/js/test_error';
 testError.testFn();
 
 setTimeout(() => {
-  aa+bb;
+  
 }, 100);
 
 let scrollTimer1 = null;

@@ -1,8 +1,6 @@
 const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
 const SkeletonWebpackPlugin = require('vue-skeleton-webpack-plugin');
 
-console.log( process.env );
-
 module.exports = {
   lintOnSave: false,
 
@@ -17,6 +15,21 @@ module.exports = {
       // when using title option,
       // template title tag needs to be <title><%= htmlWebpackPlugin.options.title %></title>
       title: process.env.NODE_ENV + ' Demos'
+    }
+  },
+
+  // 本机启动的koa服务器
+  devServer: {
+    open: true,
+    hot: true,
+    hotOnly: true,
+    proxy: {
+      '^/api/': {
+        target: 'http://127.0.0.1:3000',
+        pathRewrite: {
+          '^/api' : ''
+        }
+      }
     }
   },
 
