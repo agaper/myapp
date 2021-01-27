@@ -74,5 +74,13 @@ export default {
 }
 
 .pj-cursor-pointer{ cursor: pointer; }
+
+
+@keyframes flush{
+  0%{ left: -100%; }
+  50%{ left: 0; } 
+  100%{ left: 100%; }
+}
+
 </style>
 

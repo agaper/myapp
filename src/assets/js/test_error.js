@@ -11,7 +11,7 @@ export default {
     // Promise实例抛出的异常捕获不到，try-catch不能捕获到
     // try {
       new Promise((resolve, reject) => {
-        reject('promise error');
+        // reject('promise error');
       });  
     // } catch (error) {
     //   console.error('a Promise error', error);  
