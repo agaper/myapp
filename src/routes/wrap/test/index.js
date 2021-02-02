@@ -17,6 +17,13 @@ export default {
       meta: { 
         pageTitle: 'JS中的二进制家族',
       }
+    },
+    {
+      path: 'rxjs',
+      component: () => import(/* webpackChunkName: "pages" */ './rxjs.vue'),
+      meta: { 
+        pageTitle: 'RxJs的Demo',
+      }
     }
   ]
 }

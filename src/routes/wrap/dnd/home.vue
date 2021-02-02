@@ -2,8 +2,8 @@
   <div class="tpage">
     <h1 class="page-title">{{$route.meta.pageTitle}}</h1>
     <div class="box">
-      <span class="target target-headimg"></span>
-      <span class="target target-qrcode"></span>    
+      <span class="target target-headimg">head</span>
+      <span class="target target-qrcode">qrcode</span>    
     </div>	
   </div>
 </template>
@@ -23,7 +23,8 @@ export default {
   },
   methods: {
     initDnd(){
-      var container = document.querySelector('.box'),
+      var me = this,
+          container = document.querySelector('.box'),
           headimg = document.querySelector('.target-headimg'),
           qrcode = document.querySelector('.target-qrcode'),
           areaLeft = container.offsetLeft,
@@ -34,6 +35,19 @@ export default {
           pointerY = 0,
           canDragHeadimg = false,
           canDragQrcode = false;
+      headimg.addEventListener('touchstart', function(evt){ 
+        canDragHeadimg = true; 
+        pointerX = evt.touches[0].pageX - this.offsetLeft;
+        pointerY = evt.touches[0].pageY - this.offsetTop;
+      }, false);
+      headimg.addEventListener('click', function(evt){ 
+        import('@/components/dialog').then(() => {
+          me.$demoDialog(me)
+        }).catch((err) => {
+          console.error('@/components/dialog', err);
+        });
+      }, false);
+
       headimg.addEventListener('mousedown', function(evt){ 
         canDragHeadimg = true; 
         pointerX = evt.x - this.offsetLeft;
@@ -43,6 +57,30 @@ export default {
         canDragQrcode = true; 
         pointerX = evt.x - this.offsetLeft;
         pointerY = evt.y - this.offsetTop;
+      }, false);
+      qrcode.addEventListener('click', () => {
+        import('@/components/dialog').then(() => {
+          me.$demoDialog(me)
+        }).catch((err) => {
+          console.error('@/components/dialog', err);
+        });
+      }, false);
+
+      document.addEventListener('touchmove', function(evt){ 
+        var x = evt.touches[0].pageX - pointerX,
+            y = evt.touches[0].pageY - pointerY;
+        if(x < 0) x = 0;
+        if(y < 0) y = 0;
+        if(x >= (areaWidth - headimg.offsetWidth) ) x = areaWidth - headimg.offsetWidth;
+        if(y >= (areaHeight - headimg.offsetHeight) ) y = areaHeight - headimg.offsetHeight;
+        if(canDragHeadimg){
+          headimg.style.left = x + 'px';
+          headimg.style.top = y + 'px';
+        }
+        if(canDragQrcode){
+          qrcode.style.left = x + 'px';
+          qrcode.style.top = y + 'px';
+        }
       }, false);
       document.addEventListener('mousemove', function(evt){ 
         var x = evt.x - pointerX,
@@ -61,6 +99,10 @@ export default {
         }
       }, false);
       document.addEventListener('mouseup', function(){
+        canDragHeadimg = false;
+        canDragQrcode = false;
+      }, false);
+      document.addEventListener('touchend', function(){
         canDragHeadimg = false;
         canDragQrcode = false;
       }, false);

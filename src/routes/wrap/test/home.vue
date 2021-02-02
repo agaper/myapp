@@ -48,6 +48,7 @@
         <button class="pj-btn">文字按钮</button>
         <button class="pj-btn has-border">带边框按钮</button>
         <button class="pj-btn mid theme">按钮-mid</button>
+        <router-link to="/rxjs" class="pj-btn big has-border">按钮-big，前往RxjsDemo</router-link>
         <router-link to="/dnd" class="pj-btn big theme">按钮-big, 前往拖拽页面</router-link>
         <router-link to="/byte" class="pj-btn big theme">按钮-big, 前往二进制家族页面</router-link>
         <button class="pj-btn big has-border">按钮-big</button>

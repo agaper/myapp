@@ -7,7 +7,11 @@
 <script>
 
 export default {
-  name: 'AppRoot'
+  name: 'AppRoot',
+  mounted(){
+    console.log('HTML加载完成时间	', performance.timing.responseEnd-performance.timing.fetchStart);
+    console.log('HTML解析完成时间	', performance.timing.domInteractive-performance.timing.fetchStart, performance.timing.domInteractive, performance.timing.fetchStart);
+  }
 }
 </script>
 
@@ -74,7 +78,7 @@ export default {
 }
 
 .pj-cursor-pointer{ cursor: pointer; }
-
+.pj-btn.has-border{ color:#333; }
 
 @keyframes flush{
   0%{ left: -100%; }
