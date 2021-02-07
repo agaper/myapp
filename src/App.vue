@@ -81,7 +81,7 @@ export default {
 .pj-btn.has-border{ color:#333; }
 
 @keyframes flush{
-  0%{ left: -100%; }
+  0%{ left: -100%;  }
   50%{ left: 0; } 
   100%{ left: 100%; }
 }

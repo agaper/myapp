@@ -17,13 +17,25 @@
             docEl.style.fontSize = 100 * (clientWidth / 375) + 'px';
         }
         
+        // 对资源img css script等错误捕获
+        window.addEventListener('error', function(e){
+          var err = {
+            errorType: 'resource',
+            msg: e.message,
+            colno: e.colno,
+            type: e.type,
+            resourceUrl: e.filename
+          };
+          console.log(err);
+        });
+
         /**
          * @param {String}  msg    错误信息
          * @param {String}  url    出错文件
          * @param {Number}  row    行号
          * @param {Number}  col    列号
          * @param {Object}  error  错误详细信息
-         * @desc window.onerror 函数只有在返回 true 的时候，异常才不会向上抛出，否则即使是知道异常的发生控制台还是会显示 Uncaught Error: xxxxx； Promise实例抛出的异常捕获不到，try-catch也不行
+         * @desc window.onerror 函数只有在返回 true 的时候，异常才不会向上抛出，否则即使是知道异常的发生控制台还是会显示 Uncaught Error: xxxxx； Promise实例抛出的异常捕获不到，try-catch也不行，对语法错误的捕获
          */
         window.onerror = function(msg, url, row, col, error){
           console.warn('in public/index.html show window.onerror error: ');
@@ -37,11 +49,17 @@
         }
         
         window.addEventListener('unhandledrejection', function(e){
+          let col,
+              line,
+              reason = e.reason;
+          let errorData = {
+            errorType: 'grammar',
+            msg: e.reason,
+            type: e.type
+          }
+          console.log(errorData, e);
           e.preventDefault();
-          console.warn('in public/index.html show unhandledrejection error: ');
-          console.log(e);
-          return true;
-        });
+        }, true);
 
       })();
     </script>
@@ -56,6 +74,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12" crossorigin></script>
     <script src="https://cdn.jsdelivr.net/npm/vue-router@3.4.9" crossorigin></script>
     <script src="<%= BASE_URL %>js/vconsole.min.js"></script>    
+    <script src="<%= BASE_URL %>js/test/concurrent.js"></script>    
     <script>
       window.weCanDebug = window.location.search.indexOf('appdebug') != -1;
       if( window.weCanDebug ){
